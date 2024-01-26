@@ -47,7 +47,7 @@
   </ul>
   <p>
     Link to my project website:
-    <a href="" rel="noreferrer" target="_blank">deploy in progress...</a>
+    <a href="http://13.60.29.19:5173/dashboard" rel="noreferrer" target="_blank">DEMO</a>
   <p>
   <p>
     Link to frontend mentor project:
