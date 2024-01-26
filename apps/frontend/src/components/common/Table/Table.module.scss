@@ -1,0 +1,43 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+
+.commonTable {
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    text-transform: capitalize;
+    font-family: variables.$font-family-bold;
+  }
+
+  th,
+  td {
+    padding: 5px 7px;
+    background-color: transparent;
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      border: 1px solid themeVariables.themed('table-border-color');
+      color: themeVariables.themed('table-text-color');
+    }
+
+    border-radius: 6px;
+  }
+
+  .actionsColumn {
+    > svg {
+      vertical-align: sub;
+      cursor: pointer;
+      margin-left: 10px;
+
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+
+    :global {
+      .react-tooltip {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

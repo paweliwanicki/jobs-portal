@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "turbo": "^1.10.7"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "start": "node apps/backend/dist/main"
+  },
+  "workspaces": [
+    "/apps/*"
+  ],
+  "dependencies": {
+    "npm-check-updates": "^16.13.0"
+  }
+}

@@ -1,0 +1,101 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+.loginContainer {
+  border-radius: 6px;
+  max-width: 500px;
+  padding: 25px 50px;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  margin: auto;
+  background-image: url('./bg-login-container.svg');
+  transition: background-image linear 0.5s, background-color linear 0.5s;
+
+  @include themeVariables.themify(themeVariables.$themes) {
+    background-image: themeVariables.themed('login-container-bg');
+    background-color: themeVariables.themed('login-container-bg-color');
+  }
+
+  @include utils.respond-to(bp-very-small) {
+    padding: 25px;
+  }
+
+  .signResponseMessage {
+    min-height: 45px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > p {
+      color: variables.$red;
+      line-height: normal;
+      text-align: left;
+      font-size: 14px;
+      font-family: variables.$font-family-bold;
+      display: inline-flex;
+      gap: 10px;
+      text-align: justify;
+      border-radius: 6px;
+      padding: 3px 5px;
+      background-color: #ffffff73;
+    }
+  }
+
+  form {
+    width: 100%;
+
+    label {
+      border-radius: 6px;
+    }
+
+    button[type='submit'] {
+      display: block;
+      margin-left: auto;
+    }
+  }
+  .formChangeBox {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    font-size: 12px;
+
+    .formChangeBtn {
+      margin-top: 5px;
+      align-self: flex-end;
+      color: variables.$very-light-grey;
+      padding: 0;
+      font-size: 13px;
+      font-family: variables.$font-family-bold;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+
+  :global {
+    .react-tooltip {
+      z-index: 3;
+      font-size: 13px;
+      width: calc(100% - 100px);
+
+      &.error {
+        width: auto;
+      }
+    }
+  }
+}

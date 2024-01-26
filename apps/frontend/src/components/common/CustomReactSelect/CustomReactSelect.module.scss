@@ -1,0 +1,104 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+@use '../../../styles/utils.scss';
+
+.customReactSelectLabel {
+  position: relative;
+  height: 60px;
+  border-radius: inherit;
+
+  &.small {
+    height: 38px;
+  }
+
+  &.medium {
+    height: 48px;
+  }
+
+  &.large {
+    height: 60px;
+  }
+
+  .icon {
+    position: absolute;
+    z-index: 1;
+    left: 15px;
+    top: 18px;
+  }
+
+  .customReactSelect {
+    height: 100%;
+    border-radius: inherit;
+  }
+
+  :global {
+    .css-1fdsijx-ValueContainer,
+    .css-art2ul-ValueContainer2,
+    .css-hlgwow {
+      padding-left: 55px;
+
+      .css-1dimb5e-singleValue {
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('input-color');
+        }
+      }
+    }
+
+    .css-t3ipsp-control {
+      box-shadow: none;
+    }
+
+    .css-16xfy0z-control {
+      height: 100%;
+    }
+
+    .css-13cymwt-control,
+    .css-t3ipsp-control {
+      border: none;
+      height: 100%;
+      border-radius: inherit;
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        border-color: themeVariables.themed('offer-input-border-color');
+        background-color: themeVariables.themed('input-background');
+      }
+
+      .css-1jqq78o-placeholder {
+        text-align: left;
+        opacity: 0.5;
+        font-family: variables.$font-family-light;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('input-color');
+        }
+      }
+
+      .css-1u9des2-indicatorSeparator {
+        opacity: 0.5;
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('input-color');
+        }
+      }
+    }
+
+    .css-1nmdiq5-menu {
+      z-index: 10;
+      margin-top: 0;
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        color: themeVariables.themed('input-color');
+        background-color: themeVariables.themed('input-background');
+      }
+    }
+
+    .css-d7l1ni-option {
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('select-option-background');
+      }
+    }
+
+    .css-tr4s17-option {
+      background-color: variables.$violet;
+    }
+  }
+}

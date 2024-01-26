@@ -1,0 +1,32 @@
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+.layout {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  transition: background-color linear 0.5s;
+
+  main {
+    width: 100%;
+    max-width: 1190px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto;
+    padding: 40px;
+    flex-grow: 1;
+    flex-flow: column;
+    margin-top: 160px;
+
+    @include utils.respond-to(bp-small) {
+      padding: 20px 10px;
+      margin-top: 100px;
+    }
+  }
+}
+
+:global {
+  @include themeVariables.themify(themeVariables.$themes) {
+    background-color: themeVariables.themed('background');
+  }
+}

@@ -1,0 +1,21 @@
+/* css custom reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+}

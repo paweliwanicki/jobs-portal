@@ -1,0 +1,12 @@
+.validationIconBox {
+  display: flex;
+  align-items: center;
+
+  div.tooltipError {
+    width: fit-content;
+  }
+
+  .validationIcon {
+    opacity: 0;
+  }
+}

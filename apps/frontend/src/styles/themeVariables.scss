@@ -1,0 +1,92 @@
+@use './variables.scss';
+
+$themes: (
+  light: (
+    background: variables.$very-light-grey,
+    button-primary-bg: variables.$violet,
+    button-primary-bg-hover: variables.$light-violet,
+    button-primary-color: variables.$white,
+    button-secondary-bg: variables.$very-light-grey,
+    button-secondary-bg-hover: variables.$very-light-violet,
+    button-secondary-color: variables.$violet,
+    button-link-bg: variables.$light-grey,
+    button-link-bg-hover: variables.$very-light-grey,
+    button-link-color: variables.$violet,
+    input-background: variables.$white,
+    input-color: variables.$very-dark-blue,
+    offer-input-border-color: variables.$light-grey,
+    offer-card-bg: variables.$white,
+    offer-card-title-color: variables.$very-dark-blue,
+    text-main-color: variables.$very-dark-blue,
+    context-menu-bg-color: variables.$very-light-grey,
+    context-menu-border-color: variables.$midnight,
+    context-menu-option-color: variables.$very-dark-blue,
+    table-border-color: variables.$light-grey,
+    table-text-color: variables.$very-dark-blue,
+    filter-grid-bg-color: variables.$light-grey,
+    filter-container-bg-color: variables.$very-light-grey,
+    pagination-bg-color: variables.$violet,
+    pagination-text-color: variables.$white,
+    filter-collapse-btn-bg-color: variables.$light-grey,
+    checkbox-bg-color-1: variables.$pale-grey,
+    checkbox-bg-color-2: variables.$pale-blue,
+    modal-box-shadow: 6px 6px 16px 0px variables.$dark-blue,
+  ),
+
+  dark: (
+    background: variables.$midnight,
+    button-primary-bg: variables.$dark-blue,
+    button-primary-bg-hover: variables.$dark-grey,
+    button-primary-color: variables.$white,
+    button-secondary-bg: variables.$dark-blue,
+    button-secondary-bg-hover: variables.$dark-grey,
+    button-secondary-color: variables.$white,
+    button-link-bg: variables.$midnight,
+    button-link-bg-hover: variables.$dark-grey,
+    button-link-color: variables.$white,
+    input-background: variables.$dark-blue,
+    input-color: variables.$white,
+    offer-input-border-color: transparent,
+    offer-card-bg: variables.$very-dark-blue,
+    offer-card-title-color: variables.$white,
+    login-container-bg: none,
+    text-main-color: variables.$white,
+    select-option-background: variables.$grey,
+    context-menu-bg-color: variables.$dark-blue,
+    context-menu-border-color: variables.$light-grey,
+    context-menu-option-color: variables.$light-grey,
+    table-border-color: variables.$midnight,
+    table-text-color: variables.$light-grey,
+    filter-grid-bg-color: variables.$midnight,
+    filter-container-bg-color: variables.$midnight,
+    pagination-bg-color: variables.$dark-blue,
+    pagination-text-color: variables.$very-light-grey,
+    filter-collapse-btn-bg-color: variables.$very-dark-blue,
+    checkbox-bg-color-1: variables.$dark-blue,
+    checkbox-bg-color-2: variables.$very-dark-blue,
+    modal-box-shadow: 1px 1px 15px 0px variables.$dark-blue,
+  ),
+);
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    :global(.theme-#{$theme}) & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

@@ -1,0 +1,23 @@
+@use '../../../styles/variables.scss';
+
+.dictionaryModal {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  strong {
+    font-family: variables.$font-family-bold;
+  }
+
+  .required {
+    color: variables.$red;
+  }
+
+  .modalBtnBox {
+    display: inline-flex;
+    gap: 15px;
+    margin-left: auto;
+    margin-top: 20px;
+  }
+}

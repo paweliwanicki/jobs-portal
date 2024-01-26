@@ -1,0 +1,242 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+.offerPreviewContainer {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  flex-grow: 1;
+
+  button {
+    padding: 16px 28px;
+    white-space: nowrap;
+
+    @include utils.respond-to(bp-small) {
+      padding: 12px 18px !important;
+    }
+  }
+
+  .offerDetailsSection {
+    max-width: 730px;
+
+    .offerArchivedInfo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: variables.$font-family-bold;
+      font-size: 18px;
+    }
+
+    .companyInfoBox {
+      display: inline-flex;
+      color: black;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: center;
+      padding-right: 43px;
+      gap: 40px;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+
+      @include utils.respond-to(bp-small) {
+        padding-right: 20px;
+      }
+
+      @include utils.respond-to(bp-very-small) {
+        flex-wrap: wrap;
+        padding-right: 5px;
+      }
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('input-background');
+      }
+
+      @include utils.respond-to(bp-small) {
+        gap: 15px;
+      }
+
+      img {
+        width: 140px;
+        height: 140px;
+
+        @include utils.respond-to(bp-small) {
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: variables.$grey;
+
+        @include utils.respond-to(bp-very-small) {
+          margin: 0 0 5px auto;
+        }
+      }
+
+      .companyInfo {
+        flex-grow: 1;
+        text-align: left;
+
+        h3 {
+          color: variables.$very-dark-blue;
+          font-size: 24px;
+          line-height: normal;
+          font-family: variables.$font-family-bold;
+
+          @include themeVariables.themify(themeVariables.$themes) {
+            color: themeVariables.themed('text-main-color');
+          }
+          @include utils.respond-to(bp-small) {
+            font-size: 16px;
+          }
+        }
+
+        p {
+          color: variables.$grey;
+          font-size: 16px;
+          font-family: variables.$font-family-light;
+        }
+      }
+    }
+
+    .offerContent {
+      border-radius: 6px;
+      padding: 48px 43px 48px 48px;
+      margin-top: 32px;
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('input-background');
+      }
+
+      @include utils.respond-to(bp-small) {
+        padding: 24px 22px 24px 24px;
+      }
+
+      .offerInfoApplyBox {
+        display: inline-flex;
+        align-items: center;
+        gap: 25px;
+        width: 100%;
+
+        .offerInfoBox {
+          color: variables.$grey;
+          font-size: 16px;
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+          gap: 11px;
+          font-family: variables.$font-family-light;
+          height: 100%;
+          flex-grow: 1;
+
+          svg {
+            margin: 0 12px;
+          }
+
+          h3 {
+            font-size: 28px;
+            font-family: variables.$font-family-bold;
+            text-align: left;
+            line-height: normal;
+
+            @include themeVariables.themify(themeVariables.$themes) {
+              color: themeVariables.themed('offer-card-title-color');
+            }
+          }
+
+          .locationBox {
+            margin-top: auto;
+            .location {
+              color: variables.$violet;
+              font-size: 14px;
+              font-family: variables.$font-family-bold;
+              text-align: left;
+            }
+          }
+        }
+      }
+
+      section {
+        text-align: left;
+        margin-top: 44px;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('text-main-color');
+        }
+      }
+    }
+  }
+
+  .offerFooter {
+    padding: 23px 40px;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 32px;
+
+    @include utils.respond-to(bp-small) {
+      padding-right: 20px;
+    }
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('input-background');
+    }
+
+    .footerContent {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 1110px;
+      margin: auto;
+
+      // @include utils.respond-to(bp-very-small) {
+      //   flex-wrap: wrap;
+      // }
+
+      div {
+        flex-grow: 1;
+        text-align: left;
+
+        h3 {
+          margin-bottom: 12px;
+          @include themeVariables.themify(themeVariables.$themes) {
+            color: themeVariables.themed('text-main-color');
+          }
+
+          font-family: variables.$font-family-bold;
+          font-size: 20px;
+          line-height: normal;
+        }
+
+        p {
+          color: variables.$grey;
+        }
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('text-main-color');
+          background-color: themeVariables.themed('input-background');
+        }
+      }
+    }
+  }
+
+  .noOfferWarningBox {
+    margin: auto;
+    padding-top: 30px;
+
+    svg {
+      display: block;
+      margin: auto;
+      margin-bottom: 15px;
+    }
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+  }
+}

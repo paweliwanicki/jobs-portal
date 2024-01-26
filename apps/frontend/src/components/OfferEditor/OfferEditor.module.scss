@@ -1,0 +1,121 @@
+@use "../../styles/variables.scss";
+@use "../../styles/themeVariables.scss";
+@use "../../styles/utils.scss";
+
+.offerEditorContainer {
+  width: 100%;
+
+  .inputBox {
+    border: 2px solid;
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      border-color: themeVariables.themed("offer-input-border-color");
+    }
+  }
+
+  h2,
+  label {
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed("text-main-color");
+    }
+
+    text-align: left;
+    display: block;
+  }
+
+  h2 {
+    font-family: variables.$font-family-bold;
+    margin-bottom: 20px;
+  }
+
+  .locationLabel,
+  .companyLabel,
+  .contractLabel {
+    margin-bottom: 20px;
+    position: relative;
+
+    > p {
+      margin-bottom: 3px;
+    }
+
+    .validationIcon {
+      right: 70px;
+      top: 45px;
+    }
+  }
+
+  .validationIcon {
+    position: absolute;
+    z-index: 9;
+    div[role="tooltip"] {
+      width: fit-content;
+      text-wrap: nowrap;
+    }
+  }
+
+  .tinymceLabel {
+    textarea {
+      display: block;
+      min-height: 200px;
+      background-color: variables.$white;
+      width: 100%;
+    }
+
+    .tinymceEditorBox {
+      position: relative;
+
+      .validationIcon {
+        right: 15px;
+        top: 13px;
+        z-index: 9;
+      }
+    }
+  }
+
+  .actionsBox {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: flex-end;
+  }
+
+  .locationSelect,
+  .companySelect,
+  .contractSelect {
+    font-family: variables.$font-family-light;
+    font-size: 14px;
+  }
+
+  .inputsBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @include utils.respond-to(bp-small) {
+      flex-flow: column;
+      flex-wrap: nowrap;
+    }
+
+    label {
+      flex-basis: 49%;
+    }
+  }
+
+  .required {
+    color: variables.$red;
+  }
+}
+
+.error {
+  outline: 1px solid variables.$red;
+  -webkit-box-shadow: 0px 0px 10px 0px variables.$red;
+  -moz-box-shadow: 0px 0px 10px 0px variables.$red;
+  box-shadow: 0px 0px 10px 0px variables.$red;
+}
+
+.valid {
+  outline: 1px solid variables.$valid;
+  -webkit-box-shadow: 0px 0px 10px 0px variables.$valid;
+  -moz-box-shadow: 0px 0px 10px 0px variables.$valid;
+  box-shadow: 0px 0px 10px 0px variables.$valid;
+}

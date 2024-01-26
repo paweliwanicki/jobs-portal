@@ -1,0 +1,82 @@
+@use '../../styles/themeVariables.scss';
+@use '../../styles/variables.scss';
+
+.dicitonariesContainer {
+  @include themeVariables.themify(themeVariables.$themes) {
+    color: themeVariables.themed('text-main-color');
+  }
+  height: 100%;
+  text-align: left;
+  display: flex;
+  flex-flow: column;
+
+  h4 {
+    font-family: variables.$font-family-light;
+    font-size: 13px;
+    white-space: wrap;
+    color: variables.$grey;
+    margin-bottom: 35px;
+  }
+
+  h2 {
+    margin-bottom: 40px;
+    font-family: variables.$font-family-bold;
+  }
+
+  button {
+    margin-bottom: 25px;
+  }
+
+  :global {
+    .react-tabs {
+      flex-grow: 1;
+      display: flex;
+      flex-flow: column;
+
+      .react-tabs__tab-list {
+        margin-bottom: 0;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          border-color: themeVariables.themed('offer-input-border-color');
+        }
+
+        .react-tabs__tab--selected {
+          @include themeVariables.themify(themeVariables.$themes) {
+            border-color: themeVariables.themed('offer-input-border-color');
+            background: themeVariables.themed('input-background');
+            color: themeVariables.themed('text-main-color');
+          }
+        }
+
+        .react-tabs__tab {
+          &:focus {
+            &:after {
+              content: none;
+            }
+          }
+        }
+      }
+
+      .react-tabs__tab-panel {
+        flex-grow: 1;
+        padding: 30px 15px;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          border-left: 1px solid
+            themeVariables.themed('offer-input-border-color');
+          border-right: 1px solid
+            themeVariables.themed('offer-input-border-color');
+          border-bottom: 1px solid
+            themeVariables.themed('offer-input-border-color');
+        }
+        @include themeVariables.themify(themeVariables.$themes) {
+          background-color: themeVariables.themed('input-background');
+        }
+      }
+    }
+  }
+}
+
+.required {
+  color: variables.$red;
+}

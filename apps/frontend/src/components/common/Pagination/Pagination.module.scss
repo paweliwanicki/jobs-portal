@@ -1,0 +1,83 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+@use '../../../styles/utils.scss';
+
+.pagination {
+  margin-top: 30px;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  height: 38px;
+
+  .perPageSelectBox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-family: variables.$font-family-light;
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+  }
+
+  .pagesList {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+
+    svg {
+      cursor: pointer;
+
+      &.disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+      }
+    }
+
+    button {
+      border-radius: 50%;
+      font-size: 15px;
+      height: 30px;
+      width: 30px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      color: inherit;
+
+      transition: all 0.3s ease-in;
+
+      &.active {
+        @include themeVariables.themify(themeVariables.$themes) {
+          background-color: themeVariables.themed('pagination-bg-color');
+          color: themeVariables.themed('pagination-text-color');
+        }
+      }
+    }
+  }
+}
+
+:global {
+  #items-per-page-select {
+    width: 80px;
+
+    .css-art2ul-ValueContainer2,
+    .css-hlgwow {
+      padding-left: 10px;
+    }
+
+    #react-select-items-per-page-listbox {
+      max-height: 110px;
+
+      @include utils.respond-to(bp-very-small) {
+        max-height: fit-content;
+      }
+    }
+  }
+}

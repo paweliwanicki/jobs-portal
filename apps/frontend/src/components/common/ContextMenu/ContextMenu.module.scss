@@ -1,0 +1,73 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+
+.contextMenuBox {
+  position: relative;
+
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  .optionsList {
+    border-radius: 6px;
+    height: 0;
+    box-sizing: border-box;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    padding-left: 0;
+    z-index: 1;
+    height: fit-content;
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      -webkit-box-shadow: 0px 0px 5px 0px
+        themeVariables.themed('context-menu-border-color');
+      -moz-box-shadow: 0px 0px 5px 0px
+        themeVariables.themed('context-menu-border-color');
+      box-shadow: 0px 0px 5px 0px
+        themeVariables.themed('context-menu-border-color');
+      background-color: themeVariables.themed('context-menu-bg-color');
+    }
+
+    .option {
+      margin: 0 10px;
+      opacity: 0;
+      height: 0;
+      text-decoration: none;
+      list-style: none;
+      line-height: 24px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 -1px 0 #000;
+      white-space: nowrap;
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        color: themeVariables.themed('context-menu-option-color');
+      }
+
+      &:first-child {
+        box-shadow: none;
+      }
+
+      &:hover {
+        color: variables.$violet;
+        text-shadow: 0px 0px 1px variables.$violet;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}

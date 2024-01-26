@@ -1,0 +1,27 @@
+@use "../../../styles/variables.scss";
+
+.infoBox {
+  font-family: variables.$font-family-light;
+  font-size: 13px;
+  white-space: wrap;
+  padding: 5px 10px;
+  width: fit-content;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  text-align: left;
+
+  &.success {
+    color: variables.$valid;
+    outline: variables.$valid solid 1px;
+  }
+
+  &.error {
+    color: variables.$red;
+    outline: variables.$red solid 1px;
+  }
+
+  &.info {
+    color: variables.$grey;
+    outline: variables.$grey solid 1px;
+  }
+}

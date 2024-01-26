@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Kumbh Sans Regular';
+  src: local('Kumbh Sans Regular'),
+    url('./fonts/KumbhSans-Regular.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Kumbh Sans Bold';
+  src: local('Kumbh Sans Bold'),
+    url('./fonts/KumbhSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Kumbh Sans Light';
+  src: local('Kumbh Sans Light'),
+    url('./fonts/KumbhSans-Light.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Kumbh Sans Medium';
+  src: local('Kumbh Sans Medium'),
+    url('./fonts/KumbhSans-Medium.ttf') format('truetype');
+  font-weight: 600;
+}

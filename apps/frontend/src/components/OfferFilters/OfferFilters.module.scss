@@ -1,0 +1,187 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+$border-bottom-color: #d9dce26c;
+
+.offerFilters {
+  width: 100%;
+  position: -webkit-sticky; /* Required for Safari */
+  position: sticky;
+  top: 160px;
+  z-index: 2;
+  background-color: variables.$very-light-grey;
+  margin-top: -65px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  padding: 5px;
+  border-bottom: 2px solid $border-bottom-color;
+
+  @include utils.respond-to(bp-small) {
+    top: 100px;
+  }
+
+  @include themeVariables.themify(themeVariables.$themes) {
+    background-color: themeVariables.themed('filter-container-bg-color');
+  }
+
+  form {
+    label.archivedCheckbox {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-left: none !important;
+      gap: 15px;
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        color: themeVariables.themed('text-main-color');
+      }
+    }
+
+    .filtersBox {
+      margin-top: 15px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      @include utils.respond-to(bp-small) {
+        grid-template-columns: 1fr;
+      }
+
+      label {
+        margin-bottom: 0;
+
+        &:first-child {
+          @include utils.respond-to(bp-small) {
+            @include themeVariables.themify(themeVariables.$themes) {
+              border-bottom: 1px solid
+                themeVariables.themed('filter-grid-bg-color');
+            }
+          }
+        }
+
+        &:nth-child(1) {
+          border-top-left-radius: 6px;
+
+          @include utils.respond-to(bp-small) {
+            border-top-right-radius: 6px;
+          }
+        }
+
+        &:nth-child(2) {
+          border-top-right-radius: 6px;
+
+          @include utils.respond-to(bp-small) {
+            border-top-right-radius: 0;
+          }
+        }
+
+        &:nth-child(even) {
+          @include themeVariables.themify(themeVariables.$themes) {
+            @include utils.respond-to(bp-small) {
+              border-left: none;
+            }
+            border-left: 1px solid themeVariables.themed('filter-grid-bg-color');
+          }
+        }
+
+        &:nth-child(n + 3) {
+          @include themeVariables.themify(themeVariables.$themes) {
+            border-top: 1px solid themeVariables.themed('filter-grid-bg-color');
+          }
+
+          @include utils.respond-to(bp-small) {
+            border-top: none;
+          }
+        }
+
+        &:nth-last-child(1) {
+          border-bottom-right-radius: 6px;
+          @include utils.respond-to(bp-small) {
+            border-bottom-left-radius: 6px;
+          }
+        }
+
+        &:nth-last-child(2) {
+          border-bottom-left-radius: 6px;
+          @include utils.respond-to(bp-small) {
+            border-bottom-left-radius: 0;
+          }
+        }
+      }
+    }
+
+    .filtersControls {
+      display: flex;
+      padding: 30px 0 10px 0;
+      justify-content: space-between;
+      width: 100%;
+      align-items: flex-start;
+
+      .recordsCounter {
+        font-size: 12px;
+        display: grid;
+        grid-row: auto auto;
+        grid-template-columns: 60px 1fr;
+        column-gap: 10px;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('text-main-color');
+        }
+
+        p {
+          width: max-content;
+        }
+
+        span {
+          font-family: variables.$font-family-bold;
+        }
+      }
+
+      .buttonsBox {
+        justify-self: flex-end;
+        display: inline-flex;
+        gap: 15px;
+
+        button {
+          width: fit-content;
+          height: fit-content;
+        }
+
+        @include utils.respond-to(bp-very-small) {
+          margin: 5px 0 0 auto;
+        }
+      }
+
+      @include utils.respond-to(bp-very-small) {
+        flex-wrap: wrap;
+      }
+    }
+  }
+  .btnExpandFilters {
+    padding: 10px 5px 10px 10px;
+    display: flex;
+    margin-right: auto;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-family: variables.$font-family-bold;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    align-items: center;
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('filter-collapse-btn-bg-color');
+      }
+    }
+  }
+}

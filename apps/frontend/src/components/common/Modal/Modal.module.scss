@@ -1,0 +1,65 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+
+.overlay {
+  background-color: #00000042;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 10;
+
+  .modal {
+    height: auto;
+    top: 150%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('background');
+      color: themeVariables.themed('text-main-color');
+      -webkit-box-shadow: themeVariables.themed('modal-box-shadow');
+      -moz-box-shadow: themeVariables.themed('modal-box-shadow');
+      box-shadow: themeVariables.themed('modal-box-shadow');
+    }
+
+    border-color: variables.$light-grey;
+
+    position: relative;
+    padding: 25px;
+    border-radius: 6px;
+    min-height: 100px;
+    min-width: 320px;
+    max-width: 600px;
+
+    .title {
+      font-family: variables.$font-family-bold;
+      font-size: 20px;
+      position: relative;
+      bottom: 13px;
+      text-align: left;
+      margin-bottom: 20px;
+      text-transform: capitalize;
+    }
+
+    .closeIcon {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+  }
+}
+
+:global {
+  .ReactModalPortal {
+    position: absolute;
+  }
+}

@@ -1,0 +1,57 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+.offerList {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  margin-top: 25px;
+
+  .navigationBox {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+
+    @include utils.respond-to(bp-small) {
+      margin-top: 45px;
+    }
+  }
+
+  .list {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    row-gap: 65px;
+    column-gap: 30px;
+    width: 100%;
+    justify-content: space-between;
+    justify-items: center;
+    margin-bottom: auto;
+    margin-top: 45px;
+
+    &.empty {
+      margin: auto;
+    }
+
+    &.showMenus {
+      margin-top: 40px;
+    }
+
+    @include utils.respond-to(bp-small) {
+      margin-top: 60px;
+    }
+  }
+
+  .noOffersWarningBox {
+    text-align: center;
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+    margin: auto;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}

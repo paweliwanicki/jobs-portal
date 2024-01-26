@@ -1,0 +1,36 @@
+
+### Find offer by id
+GET http://localhost:3000/api/offers/1
+
+
+### Find all offers by userId
+GET http://localhost:3000/api/offers?createdBy=11	
+
+### Remove offer by id
+DELETE http://localhost:3000/api/offers/1
+
+
+### add offer
+POST http://localhost:3000/api/offers/
+Content-Type: application/json
+
+{
+  "title": "Senior devops dsadwadsadsa sasdsdaad ssdsad",
+  "description": "TU BEDZIE MEGA DLUGI TEKTS Z TEXT EDITORA W HTMLU ZAPEWNE",
+  "contract": "Full-time",
+  "location": "Remote",
+  "country": "DLIUUUGUGUUGUGUGUGUGUGUUG",
+  "company": "NONODASDAW"
+}
+
+
+### update offer
+PATCH http://localhost:3000/api/offers/4
+Content-Type: application/json
+
+{
+  "title": "Senior devops v2",
+  "description": "UPDATE",
+  "contract": "UPD Full-time",
+  "location": "UPD Remote"
+}

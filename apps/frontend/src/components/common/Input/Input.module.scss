@@ -1,0 +1,124 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles/themeVariables.scss';
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 3px;
+
+  > .labelText {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+
+    > svg {
+      width: 18px;
+      height: 18px;
+      cursor: help;
+    }
+  }
+
+  .inputBox {
+    width: 100%;
+    display: inline-flex;
+    border-radius: inherit;
+    padding-right: 10px;
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('input-background');
+    }
+
+    .icon {
+      align-self: center;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+
+    .tooltipError {
+      width: auto;
+      max-width: 250px;
+    }
+
+    &.error {
+      outline: 1px solid variables.$red;
+      -webkit-box-shadow: 0px 0px 10px 0px variables.$red;
+      -moz-box-shadow: 0px 0px 10px 0px variables.$red;
+      box-shadow: 0px 0px 10px 0px variables.$red;
+    }
+
+    &.valid {
+      outline: 1px solid variables.$valid;
+      -webkit-box-shadow: 0px 0px 15px 0px variables.$valid;
+      -moz-box-shadow: 0px 0px 15px 0px variables.$valid;
+      box-shadow: 0px 0px 15px 0px variables.$valid;
+    }
+
+    > input {
+      padding-left: 20px;
+      padding-right: 5px;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
+      border: none;
+      outline: none;
+      flex-grow: 1;
+      border-radius: inherit;
+      flex-shrink: 0;
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        border: inherit;
+        -webkit-text-fill-color: inherit;
+        -webkit-box-shadow: 0 0 0px 1px inset;
+        @include themeVariables.themify(themeVariables.$themes) {
+          -webkit-box-shadow: 0 0 0px 40px
+            themeVariables.themed('input-background') inset !important;
+          -webkit-text-fill-color: themeVariables.themed(
+            'input-color'
+          ) !important;
+        }
+      }
+
+      &.small {
+        height: 40px;
+        font-size: 14px;
+      }
+      &.medium {
+        height: 60px;
+        font-size: 14px;
+      }
+      &.large {
+        height: 80px;
+        font-size: 18px;
+      }
+
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('input-background');
+        color: themeVariables.themed('input-color');
+      }
+
+      &::placeholder {
+        opacity: 0.5;
+        font-family: variables.$font-family-light;
+
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('input-color');
+        }
+      }
+    }
+
+    .iconsBox {
+      display: inline-flex;
+      gap: 7px;
+
+      > svg {
+        align-self: center;
+        cursor: pointer;
+      }
+    }
+  }
+}

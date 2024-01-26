@@ -1,0 +1,64 @@
+@use '../../../styles/variables.scss';
+@use '../../../styles//themeVariables.scss';
+
+button.button {
+  transition: background-color 0.5s;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-family: variables.$font-family-bold;
+  font-size: 16px;
+  padding: 16px 38px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:active {
+    outline: none;
+    border: none;
+  }
+
+  &:focus-visible,
+  &:focus {
+    outline: none;
+  }
+
+  &.primary {
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('button-primary-bg');
+      color: themeVariables.themed('button-primary-color');
+    }
+
+    &:hover {
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('button-primary-bg-hover');
+      }
+    }
+  }
+
+  &.secondary {
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('button-secondary-bg');
+      color: themeVariables.themed('button-secondary-color');
+    }
+
+    &:hover {
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('button-secondary-bg-hover');
+      }
+    }
+  }
+
+  &.link {
+    padding: 20px 16px;
+    @include themeVariables.themify(themeVariables.$themes) {
+      background-color: themeVariables.themed('button-link-bg');
+      color: themeVariables.themed('button-link-color');
+    }
+
+    &:hover {
+      @include themeVariables.themify(themeVariables.$themes) {
+        background-color: themeVariables.themed('button-link-bg-hover');
+      }
+    }
+  }
+}

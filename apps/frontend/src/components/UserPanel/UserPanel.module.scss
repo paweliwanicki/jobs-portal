@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+.userPanel {
+  color: variables.$midnight;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 30px;
+  height: 100%;
+  flex-flow: column;
+
+  .userMenu {
+    display: inline-flex;
+    gap: 20px;
+
+    @include utils.respond-to(bp-small) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .userProfileDetails {
+    text-align: left;
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('text-main-color');
+    }
+    p {
+      span {
+        font-size: 15px;
+        font-family: variables.$font-family-bold;
+      }
+    }
+  }
+
+  .moreActions {
+    margin-top: auto;
+
+    .btnSignOut {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+
+### Find company by id
+GET http://localhost:3000/api/dict/company/4
+
+
+### Find all companies
+GET http://localhost:3000/api/dict/company
+
+### Remove company by id
+DELETE http://localhost:3000/api/dict/company/2
+
+
+### add company
+POST http://localhost:3000/api/dict/company/
+Content-Type: application/json
+
+{
+  "name": "Skull2"
+}
+
+
+### update company
+PATCH http://localhost:3000/api/dict/company/4
+Content-Type: application/json
+
+{
+  "name": "Skuldsal2"
+}

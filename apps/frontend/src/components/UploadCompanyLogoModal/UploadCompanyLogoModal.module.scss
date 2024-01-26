@@ -1,0 +1,43 @@
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
+
+div.uploadCompanyLogoModal {
+  .content {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+
+    h2 {
+      font-family: variables.$font-family-bold;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      strong {
+        font-family: variables.$font-family-bold;
+      }
+    }
+
+    .uploadImageBox {
+      flex-grow: 1;
+      margin-left: 0;
+      flex-flow: column;
+
+      img {
+        max-width: 100%;
+        max-height: 550px;
+      }
+    }
+
+    .buttonsBox {
+      display: flex;
+      gap: 15px;
+      align-self: flex-end;
+      margin-top: auto;
+    }
+  }
+}
