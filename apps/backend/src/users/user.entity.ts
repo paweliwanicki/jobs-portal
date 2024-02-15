@@ -31,6 +31,9 @@ export class User {
   createdAt: number;
 
   @Column({ nullable: true })
+  updatedAt: number;
+
+  @Column({ nullable: true })
   @Exclude()
   refreshToken: string;
 

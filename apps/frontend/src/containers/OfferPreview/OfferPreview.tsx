@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from 'react-router-dom';
 import classes from './OfferPreview.module.scss';
 import Button from '../../components/common/Button/Button';
 import { useEffect } from 'react';
@@ -7,13 +7,30 @@ import SvgIcon from '../../components/common/SvgIcon/SvgIcon';
 import { useOffer } from '../../providers/OfferProvider';
 import InfoBox from '../../components/common/InfoBox/InfoBox';
 import { useTheme } from '../../providers/ThemeProvider';
+import ContentLoader from 'react-content-loader';
 
 type OfferPreviewProps = {};
+
+const OfferPreviewLoader = () => (
+  <ContentLoader
+    speed={2}
+    width={'100%'}
+    height={1000}
+    viewBox="0 0 100% 900"
+    backgroundColor="#E0E0E0"
+    foregroundColor="#ecebeb"
+    preserveAspectRatio="slice"
+  >
+    <rect x="0" y="0" rx="2" ry="2" width="100%" height="140" />
+    <rect x="0" y="175" rx="2" ry="2" width="100%" height="700" />
+    <rect x="0" y="910" rx="2" ry="2" width="100%" height="140" />
+  </ContentLoader>
+);
 
 const OfferPreview = ({}: OfferPreviewProps) => {
   const { theme } = useTheme();
   const { id } = useParams();
-  const { fetchOffer, selectedOffer } = useOffer();
+  const { fetchOffer, selectedOffer, isFetching } = useOffer();
   const { company, createdAt, contract, location, title } = selectedOffer ?? {};
 
   useEffect(() => {
@@ -26,7 +43,10 @@ const OfferPreview = ({}: OfferPreviewProps) => {
 
   return (
     <div className={classes.offerPreviewContainer}>
-      {selectedOffer ? (
+      <ScrollRestoration />
+      {isFetching ? (
+        <OfferPreviewLoader />
+      ) : selectedOffer ? (
         <>
           <section className={classes.offerDetailsSection}>
             {selectedOffer.archived && (

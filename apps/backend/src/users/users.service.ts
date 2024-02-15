@@ -37,6 +37,7 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException(AUTH_EXCEPTION_MESSAGES.NOT_FOUND);
     }
+    user.updatedAt = Math.floor(new Date().getTime() / 1000);
     Object.assign(user, attrs);
     return this.userRepository.save(user);
   }

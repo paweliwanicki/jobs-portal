@@ -37,6 +37,10 @@ const Pagination = ({
   const { getFiltersValues } = useFilters();
   const { offers } = useOffer();
 
+  const previousPageControlsDisabled = totalPages === 1 || activePage === 1;
+  const nextPageControlsDisabled =
+    totalPages === 1 || activePage === totalPages;
+
   const [selectedItemsPerPage, setSelectedItemsPerPage] = useState<
     SingleValue<Option>
   >(ITEMS_PER_PAGE_OPTIONS[0]);
@@ -130,7 +134,7 @@ const Pagination = ({
           height={22}
           viewBox="0 0 24 24"
           onClick={() => handleChangePage(1)}
-          classNames={totalPages === 1 ? classes.disabled : ''}
+          classNames={previousPageControlsDisabled ? classes.disabled : ''}
         />
         <SvgIcon
           id={theme === 'dark' ? 'left-arrow-dark' : 'left-arrow-light'}
@@ -138,7 +142,7 @@ const Pagination = ({
           height={16}
           viewBox="0 0 20 20"
           onClick={() => handleChangePage(activePage - 1)}
-          classNames={totalPages === 1 ? classes.disabled : ''}
+          classNames={previousPageControlsDisabled ? classes.disabled : ''}
         />
         {renderPagesList()}
         <SvgIcon
@@ -147,7 +151,7 @@ const Pagination = ({
           height={16}
           viewBox="0 0 20 20"
           onClick={() => handleChangePage(activePage + 1)}
-          classNames={totalPages === 1 ? classes.disabled : ''}
+          classNames={nextPageControlsDisabled ? classes.disabled : ''}
         />
         <SvgIcon
           id={
@@ -159,7 +163,7 @@ const Pagination = ({
           height={22}
           viewBox="0 0 24 24"
           onClick={() => handleChangePage(totalPages)}
-          classNames={totalPages === 1 ? classes.disabled : ''}
+          classNames={nextPageControlsDisabled ? classes.disabled : ''}
         />
       </div>
     </div>

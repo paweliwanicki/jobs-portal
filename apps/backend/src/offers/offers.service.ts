@@ -3,16 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Offer } from './offer.entity';
 import { ILike, Repository } from 'typeorm';
 import { OFFER_EXCEPTION_MESSAGES } from './offer-exception.messages';
-import { CompanyService } from '../dictionaries/company/company.service';
-import { ContractService } from '../dictionaries/contract/contract.service';
 import { NewOfferDto } from './dtos/new-offer.dto';
 import { FiltersOfferDto } from './dtos/filters-offer.dto';
 
 @Injectable()
 export class OffersService {
   constructor(
-    private companyService: CompanyService,
-    private contractService: ContractService,
     @InjectRepository(Offer) private offerRepository: Repository<Offer>,
   ) {}
 
@@ -33,14 +29,7 @@ export class OffersService {
     return this.offerRepository.find({ where: { createdBy } });
   }
 
-  async findOne(where: FiltersOfferDto) {
-    return await this.offerRepository.findOne({
-      where,
-      relations: { company: true, contract: true },
-    });
-  }
-
-  async findAll(filters: FiltersOfferDto) {
+  async findAll(filters: Partial<FiltersOfferDto>) {
     const { activePage, itemsPerPage, ...where } = filters;
 
     if (where.title) {

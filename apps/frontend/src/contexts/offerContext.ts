@@ -8,6 +8,7 @@ type OfferContextType = {
   offers: Offer[];
   countMyOffers: number;
   countMyArchivedOffers: number;
+  isFetching: boolean;
   fetchOffer: (id: number) => void;
   fetchOffers: (filters?: FiltersValuesType) => void;
   fetchMyOffers: (filters?: FiltersValuesType) => void;
@@ -23,6 +24,7 @@ export const OfferContext = createContext<OfferContextType>({
   offers: [],
   countMyOffers: 0,
   countMyArchivedOffers: 0,
+  isFetching: false,
   fetchOffer: () => undefined,
   fetchOffers: () => undefined,
   removeOffer: () => undefined,
