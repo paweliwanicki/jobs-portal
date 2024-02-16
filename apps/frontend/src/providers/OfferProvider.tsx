@@ -41,7 +41,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         setOffers(_offers);
       }
     },
-    [offers]
+    [offers, fetch]
   );
 
   const fetchOffer = useCallback(
@@ -54,7 +54,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         setSelectedOffer(fetchedOffer);
       }
     },
-    [selectedOffer]
+    [selectedOffer, fetch]
   );
 
   const removeOffer = useCallback(
@@ -95,7 +95,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         setOffers(_offers);
       }
     },
-    [offers]
+    [offers, fetch]
   );
 
   const fetchMyOffers = useCallback(
@@ -118,7 +118,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         setOffers(_offers);
       }
     },
-    [offers]
+    [offers, fetch]
   );
 
   const fetchMyArchivedOffers = useCallback(
@@ -141,7 +141,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         setOffers(_offers);
       }
     },
-    [offers]
+    [offers, fetch]
   );
 
   const archiveOffer = useCallback(
@@ -160,7 +160,7 @@ const OfferProvider = ({ children }: OfferProviderProps) => {
         );
       }
     },
-    [fetchMyOffers]
+    [fetchMyOffers, handleShowSnackBar]
   );
 
   const contextValue = useMemo(

@@ -1,31 +1,35 @@
+import { useEffect } from 'react';
 import { ScrollRestoration, useParams } from 'react-router-dom';
+import { getOfferAddedTime } from '../../components/OfferCard/OfferCard';
+import { useOffer } from '../../providers/OfferProvider';
+import { useTheme } from '../../providers/ThemeProvider';
+import InfoBox from '../../components/common/InfoBox/InfoBox';
 import classes from './OfferPreview.module.scss';
 import Button from '../../components/common/Button/Button';
-import { useEffect } from 'react';
-import { getOfferAddedTime } from '../../components/OfferCard/OfferCard';
 import SvgIcon from '../../components/common/SvgIcon/SvgIcon';
-import { useOffer } from '../../providers/OfferProvider';
-import InfoBox from '../../components/common/InfoBox/InfoBox';
-import { useTheme } from '../../providers/ThemeProvider';
 import ContentLoader from 'react-content-loader';
 
 type OfferPreviewProps = {};
 
-const OfferPreviewLoader = () => (
-  <ContentLoader
-    speed={2}
-    width={'100%'}
-    height={1000}
-    viewBox="0 0 100% 900"
-    backgroundColor="#E0E0E0"
-    foregroundColor="#ecebeb"
-    preserveAspectRatio="slice"
-  >
-    <rect x="0" y="0" rx="2" ry="2" width="100%" height="140" />
-    <rect x="0" y="175" rx="2" ry="2" width="100%" height="700" />
-    <rect x="0" y="910" rx="2" ry="2" width="100%" height="140" />
-  </ContentLoader>
-);
+const OfferPreviewLoader = () => {
+  const { theme } = useTheme();
+  return (
+    <ContentLoader
+      speed={2}
+      width={'100%'}
+      height={1020}
+      viewBox="0 0 100% 1020"
+      backgroundColor={theme === 'dark' ? '#222f3e' : '#E0E0E0'}
+      foregroundColor={theme === 'dark' ? '#19202d' : '#ecebeb'}
+      preserveAspectRatio="slice"
+      style={{ maxWidth: '730px' }}
+    >
+      <rect x="0" y="0" rx="6" ry="6" width="100%" height="140" />
+      <rect x="0" y="175" rx="6" ry="6" width="100%" height="700" />
+      <rect x="0" y="910" rx="6" ry="6" width="100%" height="110" />
+    </ContentLoader>
+  );
+};
 
 const OfferPreview = ({}: OfferPreviewProps) => {
   const { theme } = useTheme();

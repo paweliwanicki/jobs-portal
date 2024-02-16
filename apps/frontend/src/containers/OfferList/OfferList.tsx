@@ -9,7 +9,6 @@ import OfferFilters from '../../components/OfferFilters/OfferFilters';
 import Pagination from '../../components/common/Pagination/Pagination';
 import { useUser } from '../../providers/UserProvider';
 import { useOffer } from '../../providers/OfferProvider';
-import { useApi } from '../../hooks/useApi';
 import { usePagination } from '../../hooks/usePagination';
 import { FiltersValuesType } from '../../contexts/filtersContext';
 import { Offer } from '../../types/Offer';
@@ -29,7 +28,6 @@ const OfferList = ({
   showMenus = false,
 }: OfferListProps) => {
   const { theme } = useTheme();
-  const { isFetching } = useApi();
   const { user } = useUser();
   const {
     fetchOffers,
@@ -38,6 +36,7 @@ const OfferList = ({
     fetchMyArchivedOffers,
     countOffers,
     offers,
+    isFetching,
   } = useOffer();
 
   const {
@@ -69,7 +68,7 @@ const OfferList = ({
       handleSetPage(filters?.activePage);
       fetchOffersByView[view]?.(filters);
     },
-    [view, fetchOffersByView, handleSetPage]
+    [view, fetchOffersByView]
   );
 
   const handleClearFilterList = useCallback(
@@ -135,59 +134,64 @@ const OfferList = ({
         activePage={activePage}
         itemsPerPage={itemsPerPage}
       />
-      {isFetching && <LoadingSpinner message="Fetching offer list" />}
-      {navigationBox}
-      <div
-        className={`${classes.list} ${classNames} ${
-          !offers.length ? classes.empty : ''
-        }
+      {isFetching ? (
+        <LoadingSpinner message="Fetching offer list" />
+      ) : (
+        <>
+          {navigationBox}
+          <div
+            className={`${classes.list} ${classNames} ${
+              !offers.length ? classes.empty : ''
+            }
         ${showMenus ? classes.showMenus : ''}
         `}
-      >
-        {offers.length ? (
-          offers.map(
-            ({
-              id,
-              company,
-              title,
-              location,
-              contract,
-              createdAt,
-              archived,
-            }: Offer) => (
-              <OfferCard
-                key={`offer-${id}`}
-                id={id}
-                title={title}
-                company={company}
-                location={location}
-                contract={contract}
-                createdAt={createdAt ?? 0}
-                archived={archived}
-                showMenu={showMenus}
-              />
-            )
-          )
-        ) : (
-          <div className={classes.noOffersWarningBox}>
-            <SvgIcon
-              id="icon-error"
-              color={theme === 'dark' ? 'white' : '#19202d'}
-              width={64}
-              height={64}
-            />
-            <h3>No jobs offers has been found!</h3>
+          >
+            {offers.length ? (
+              offers.map(
+                ({
+                  id,
+                  company,
+                  title,
+                  location,
+                  contract,
+                  createdAt,
+                  archived,
+                }: Offer) => (
+                  <OfferCard
+                    key={`offer-${id}`}
+                    id={id}
+                    title={title}
+                    company={company}
+                    location={location}
+                    contract={contract}
+                    createdAt={createdAt ?? 0}
+                    archived={archived}
+                    showMenu={showMenus}
+                  />
+                )
+              )
+            ) : (
+              <div className={classes.noOffersWarningBox}>
+                <SvgIcon
+                  id="icon-error"
+                  color={theme === 'dark' ? 'white' : '#19202d'}
+                  width={64}
+                  height={64}
+                />
+                <h3>No jobs offers has been found!</h3>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-      <Pagination
-        onSubmit={handleFilterList}
-        onSetPage={handleSetPage}
-        onSetItemsPerPage={handleSetItemsPerPage}
-        activePage={activePage}
-        totalPages={totalPages}
-        itemsPerPage={itemsPerPage}
-      />
+          <Pagination
+            onSubmit={handleFilterList}
+            onSetPage={handleSetPage}
+            onSetItemsPerPage={handleSetItemsPerPage}
+            activePage={activePage}
+            totalPages={totalPages}
+            itemsPerPage={itemsPerPage}
+          />
+        </>
+      )}
     </div>
   );
 };

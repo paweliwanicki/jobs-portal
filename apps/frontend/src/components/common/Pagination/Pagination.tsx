@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useState } from 'react';
-import classes from './Pagination.module.scss';
-import SvgIcon from '../SvgIcon/SvgIcon';
-import CustomReactSelect from '../CustomReactSelect/CustomReactSelect';
+import { useCallback, useState } from 'react';
 import { SingleValue } from 'react-select';
 import { Option } from 'react-google-places-autocomplete/build/types';
 import { useFilters } from '../../../providers/FiltersProvider';
 import { FiltersValuesType } from '../../../contexts/filtersContext';
-import { useOffer } from '../../../providers/OfferProvider';
 import { useTheme } from '../../../providers/ThemeProvider';
+import classes from './Pagination.module.scss';
+import SvgIcon from '../SvgIcon/SvgIcon';
+import CustomReactSelect from '../CustomReactSelect/CustomReactSelect';
 
 export const ITEMS_PER_PAGE_OPTIONS = [
   { label: '12', value: 12 },
@@ -35,7 +34,6 @@ const Pagination = ({
 }: PaginationProps) => {
   const { theme } = useTheme();
   const { getFiltersValues } = useFilters();
-  const { offers } = useOffer();
 
   const previousPageControlsDisabled = totalPages === 1 || activePage === 1;
   const nextPageControlsDisabled =
@@ -45,19 +43,31 @@ const Pagination = ({
     SingleValue<Option>
   >(ITEMS_PER_PAGE_OPTIONS[0]);
 
+  const handleOnSubmitFilter = useCallback(() => {
+    const filtersValues = getFiltersValues();
+    const pagination = {
+      activePage,
+      itemsPerPage,
+    };
+    console.log(filtersValues, pagination);
+    onSubmit({ ...filtersValues, ...pagination });
+  }, [getFiltersValues, onSubmit]);
+
   const handleChangePage = useCallback(
     (page: number) => {
       onSetPage(page);
+      handleOnSubmitFilter();
     },
-    [onSetPage]
+    [onSetPage, handleOnSubmitFilter]
   );
 
   const handleChangeItemsPerPage = useCallback(
     (option: any) => {
       setSelectedItemsPerPage(option);
       onSetItemsPerPage(option?.value);
+      handleOnSubmitFilter();
     },
-    [onSetItemsPerPage]
+    [onSetItemsPerPage, handleOnSubmitFilter]
   );
 
   const renderPagesList = useCallback(() => {
@@ -96,17 +106,6 @@ const Pagination = ({
     });
     return pagesList;
   }, [activePage, totalPages]);
-
-  useEffect(() => {
-    if (offers.length) {
-      const filtersValues = getFiltersValues();
-      const pagination = {
-        activePage,
-        itemsPerPage,
-      };
-      onSubmit({ ...filtersValues, ...pagination });
-    }
-  }, [activePage, itemsPerPage]);
 
   return totalPages ? (
     <div className={classes.pagination}>
