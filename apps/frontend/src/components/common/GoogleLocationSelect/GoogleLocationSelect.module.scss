@@ -38,10 +38,12 @@
       border: 2px solid;
       height: 100%;
       border-radius: 6px;
+      box-shadow: none;
 
       @include themeVariables.themify(themeVariables.$themes) {
         border-color: themeVariables.themed('offer-input-border-color');
         background-color: themeVariables.themed('input-background');
+        color: themeVariables.themed('input-color');
       }
 
       .css-1jqq78o-placeholder {

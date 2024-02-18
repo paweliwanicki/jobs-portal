@@ -5,7 +5,7 @@ import ValidationIcon from '../common/ValidationIcon/ValidationIcon';
 import { Editor } from '@tinymce/tinymce-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useOfferEditor } from '../../hooks/useOfferEditor';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LoadingSpinner } from '../common/LoadingSpinner/LoadingSpinner';
 import type { Option } from 'react-google-places-autocomplete/build/types';
 import type { Editor as TinyMceEditor } from 'tinymce';
@@ -26,12 +26,13 @@ import InfoBox from '../common/InfoBox/InfoBox';
 import { OFFERS_API_PATH } from '../../providers/OfferProvider';
 
 const OfferEditor = () => {
+  const navigate = useNavigate();
   let { id } = useParams<{ id: string | undefined }>();
   const { fetch } = useApi();
   const { theme } = useTheme();
-
   const { history } = useRouter();
   const editorRef = useRef<TinyMceEditor>();
+
   const {
     companySelectOptions,
     contractSelectOptions,
@@ -154,7 +155,12 @@ const OfferEditor = () => {
           description,
         };
 
-        return id ? await updateOffer(offer) : await addOffer(offer);
+        const { message } = id
+          ? await updateOffer(offer)
+          : await addOffer(offer);
+        if (message === 'OK') {
+          navigate('/offer/my');
+        }
       }
     },
     [

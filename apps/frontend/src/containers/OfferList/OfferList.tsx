@@ -27,6 +27,7 @@ const OfferList = ({
   classNames = '',
   showMenus = false,
 }: OfferListProps) => {
+  const [searchParams] = useSearchParams();
   const { theme } = useTheme();
   const { user } = useUser();
   const {
@@ -48,8 +49,6 @@ const OfferList = ({
   } = usePagination({
     totalItems: countOffers,
   });
-
-  const [searchParams] = useSearchParams();
 
   const fetchOffersByView: Record<
     OfferListView,

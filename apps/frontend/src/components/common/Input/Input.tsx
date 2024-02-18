@@ -1,10 +1,10 @@
-import classes from "./Input.module.scss";
-import { ReactNode, useCallback, ChangeEvent, MutableRefObject } from "react";
-import { KeyboardEvent } from "react";
-import ValidationIcon from "../ValidationIcon/ValidationIcon";
+import classes from './Input.module.scss';
+import { ReactNode, useCallback, ChangeEvent, MutableRefObject } from 'react';
+import { KeyboardEvent } from 'react';
+import ValidationIcon from '../ValidationIcon/ValidationIcon';
 
-type InputTypes = "text" | "number" | "password" | "email";
-type InputSize = "small" | "medium" | "large";
+type InputTypes = 'text' | 'number' | 'password' | 'email';
+type InputSize = 'small' | 'medium' | 'large';
 
 export type InputProps = {
   id: string;
@@ -41,17 +41,17 @@ const Input = ({
   autoComplete,
   children,
   inputRef,
-  classNames = "",
-  size = "medium",
-  type = "text",
+  classNames = '',
+  size = 'medium',
+  type = 'text',
   onChange,
   onKeyDown,
 }: InputProps) => {
-  let validClassName = "";
-  let inputBoxClassNames = `${classNames} ${classes.inputBox}`;
+  let validClassName = '';
+  let inputBoxClassNames = `${classNames} ${classes.inputBox} ${classes[size]}`;
 
   const showValidationInfo =
-    (errorText !== "" || validText !== "") && isValidated;
+    (errorText !== '' || validText !== '') && isValidated;
   if (showValidationInfo) {
     validClassName = !hasError ? classes.valid : classes.error;
     inputBoxClassNames = `${inputBoxClassNames} ${validClassName}`;
@@ -77,14 +77,14 @@ const Input = ({
           onChange={handleInputOnChange}
           onKeyDown={onKeyDown}
           placeholder={placeholder}
-          className={`${classes[size]} ${icon ? classes.withIcon : ""}`}
+          className={`${icon ? classes.withIcon : ''}`}
           autoComplete={autoComplete}
           ref={inputRef}
         />
 
         <div
           className={`${classes.iconsBox} 
-          ${classes[type] ?? ""}`}
+          ${classes[type] ?? ''}`}
         >
           {children}
           {showValidationInfo && (

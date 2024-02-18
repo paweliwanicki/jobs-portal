@@ -7,7 +7,9 @@
   max-width: 350px;
   height: 230px;
   position: relative;
-  background-color: variables.$white;
+  @include themeVariables.themify(themeVariables.$themes) {
+    background-color: themeVariables.themed('offer-card-bg');
+  }
 
   .newBadge {
     width: 38px;
@@ -23,8 +25,8 @@
     font-size: 11px;
     letter-spacing: 0.2em;
     text-align: right;
-    left: 100px;
-    top: -15px;
+    left: 95px;
+    top: -22px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     font-family: variables.$font-family-bold;
@@ -36,7 +38,9 @@
       bottom: 0;
       width: 0;
       height: 0;
-      border-bottom: 10px solid variables.$white;
+      @include themeVariables.themify(themeVariables.$themes) {
+        border-bottom: 10px solid themeVariables.themed('offer-new-badge-bg');
+      }
       border-left: 22px solid transparent;
       border-right: 22px solid transparent;
     }
@@ -50,10 +54,6 @@
 
   a {
     text-decoration: none;
-  }
-
-  @include themeVariables.themify(themeVariables.$themes) {
-    background-color: themeVariables.themed('offer-card-bg');
   }
 
   padding: 50px 32px 32px 32px;

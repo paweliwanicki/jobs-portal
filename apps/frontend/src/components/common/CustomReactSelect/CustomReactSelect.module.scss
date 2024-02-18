@@ -79,6 +79,13 @@
           color: themeVariables.themed('input-color');
         }
       }
+
+      .css-qbdosj-Input,
+      .css-166bipr-Input {
+        @include themeVariables.themify(themeVariables.$themes) {
+          color: themeVariables.themed('input-color');
+        }
+      }
     }
 
     .css-1nmdiq5-menu {

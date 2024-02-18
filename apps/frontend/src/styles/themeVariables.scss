@@ -31,6 +31,9 @@ $themes: (
     checkbox-bg-color-1: variables.$pale-grey,
     checkbox-bg-color-2: variables.$pale-blue,
     modal-box-shadow: 6px 6px 16px 0px variables.$dark-blue,
+    offer-new-badge-bg: variables.$white,
+    loading-spinner-bg-color: variables.$very-light-grey,
+    loading-spinner-text-color: variables.$midnight,
   ),
 
   dark: (
@@ -46,7 +49,7 @@ $themes: (
     button-link-color: variables.$white,
     input-background: variables.$dark-blue,
     input-color: variables.$white,
-    offer-input-border-color: transparent,
+    offer-input-border-color: variables.$dark-blue,
     offer-card-bg: variables.$very-dark-blue,
     offer-card-title-color: variables.$white,
     login-container-bg: none,
@@ -65,6 +68,9 @@ $themes: (
     checkbox-bg-color-1: variables.$dark-blue,
     checkbox-bg-color-2: variables.$very-dark-blue,
     modal-box-shadow: 1px 1px 15px 0px variables.$dark-blue,
+    offer-new-badge-bg: variables.$very-dark-blue,
+    loading-spinner-bg-color: variables.$midnight,
+    loading-spinner-text-color: variables.$white,
   ),
 );
 

@@ -1,9 +1,9 @@
-import { useCallback } from "react";
-import classes from "../CustomReactSelect/CustomReactSelect.module.scss";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import { SingleValue } from "react-select";
-import { Option } from "react-google-places-autocomplete/build/types";
-import SvgIcon from "../SvgIcon/SvgIcon";
+import { useCallback } from 'react';
+import classes from '../CustomReactSelect/CustomReactSelect.module.scss';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { SingleValue } from 'react-select';
+import { Option } from 'react-google-places-autocomplete/build/types';
+import SvgIcon from '../SvgIcon/SvgIcon';
 
 type CustomReactSelectProps = {
   id?: string;
@@ -20,10 +20,10 @@ const GoogleLocationSelect = ({
   id,
   value,
   instanceId,
-  classNames = "",
+  classNames = '',
   isClearable = true,
-  language = "en",
-  placeholder = "location...",
+  language = 'en',
+  placeholder = 'location...',
   onChange,
 }: CustomReactSelectProps) => {
   const handleSelection = useCallback((items: SingleValue<Option> | null) => {
@@ -48,7 +48,7 @@ const GoogleLocationSelect = ({
           placeholder,
           isClearable,
           className: `${classes.customReactSelect} ${classNames}`,
-          noOptionsMessage: () => "Please type min 3 chars...",
+          noOptionsMessage: () => 'Please type min 3 chars...',
           onChange: handleSelection,
         }}
       />

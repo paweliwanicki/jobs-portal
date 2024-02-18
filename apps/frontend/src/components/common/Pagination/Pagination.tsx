@@ -43,29 +43,28 @@ const Pagination = ({
     SingleValue<Option>
   >(ITEMS_PER_PAGE_OPTIONS[0]);
 
-  const handleOnSubmitFilter = useCallback(() => {
-    const filtersValues = getFiltersValues();
-    const pagination = {
-      activePage,
-      itemsPerPage,
-    };
-    console.log(filtersValues, pagination);
-    onSubmit({ ...filtersValues, ...pagination });
-  }, [getFiltersValues, onSubmit]);
+  const handleOnSubmitFilter = useCallback(
+    (pagination: { activePage: number; itemsPerPage: number }) => {
+      const filtersValues = getFiltersValues();
+      onSubmit({ ...filtersValues, ...pagination });
+    },
+    [getFiltersValues, onSubmit]
+  );
 
   const handleChangePage = useCallback(
     (page: number) => {
       onSetPage(page);
-      handleOnSubmitFilter();
+      handleOnSubmitFilter({ activePage: page, itemsPerPage });
     },
     [onSetPage, handleOnSubmitFilter]
   );
 
   const handleChangeItemsPerPage = useCallback(
     (option: any) => {
+      const { value: itemsPerPage } = option;
       setSelectedItemsPerPage(option);
-      onSetItemsPerPage(option?.value);
-      handleOnSubmitFilter();
+      onSetItemsPerPage(option.value);
+      handleOnSubmitFilter({ activePage, itemsPerPage });
     },
     [onSetItemsPerPage, handleOnSubmitFilter]
   );
@@ -132,7 +131,9 @@ const Pagination = ({
           width={22}
           height={22}
           viewBox="0 0 24 24"
-          onClick={() => handleChangePage(1)}
+          onClick={
+            previousPageControlsDisabled ? undefined : () => handleChangePage(1)
+          }
           classNames={previousPageControlsDisabled ? classes.disabled : ''}
         />
         <SvgIcon
@@ -140,7 +141,11 @@ const Pagination = ({
           width={16}
           height={16}
           viewBox="0 0 20 20"
-          onClick={() => handleChangePage(activePage - 1)}
+          onClick={
+            previousPageControlsDisabled
+              ? undefined
+              : () => handleChangePage(activePage - 1)
+          }
           classNames={previousPageControlsDisabled ? classes.disabled : ''}
         />
         {renderPagesList()}
@@ -149,7 +154,11 @@ const Pagination = ({
           width={16}
           height={16}
           viewBox="0 0 20 20"
-          onClick={() => handleChangePage(activePage + 1)}
+          onClick={
+            nextPageControlsDisabled
+              ? undefined
+              : () => handleChangePage(activePage + 1)
+          }
           classNames={nextPageControlsDisabled ? classes.disabled : ''}
         />
         <SvgIcon
@@ -161,7 +170,11 @@ const Pagination = ({
           width={22}
           height={22}
           viewBox="0 0 24 24"
-          onClick={() => handleChangePage(totalPages)}
+          onClick={
+            nextPageControlsDisabled
+              ? undefined
+              : () => handleChangePage(totalPages)
+          }
           classNames={nextPageControlsDisabled ? classes.disabled : ''}
         />
       </div>

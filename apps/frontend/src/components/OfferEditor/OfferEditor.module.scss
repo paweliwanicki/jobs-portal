@@ -1,22 +1,24 @@
-@use "../../styles/variables.scss";
-@use "../../styles/themeVariables.scss";
-@use "../../styles/utils.scss";
+@use '../../styles/variables.scss';
+@use '../../styles/themeVariables.scss';
+@use '../../styles/utils.scss';
 
 .offerEditorContainer {
   width: 100%;
 
   .inputBox {
     border: 2px solid;
+    height: 60px;
+    border-radius: 6px;
 
     @include themeVariables.themify(themeVariables.$themes) {
-      border-color: themeVariables.themed("offer-input-border-color");
+      border-color: themeVariables.themed('offer-input-border-color');
     }
   }
 
   h2,
   label {
     @include themeVariables.themify(themeVariables.$themes) {
-      color: themeVariables.themed("text-main-color");
+      color: themeVariables.themed('text-main-color');
     }
 
     text-align: left;
@@ -33,10 +35,7 @@
   .contractLabel {
     margin-bottom: 20px;
     position: relative;
-
-    > p {
-      margin-bottom: 3px;
-    }
+    height: 60px;
 
     .validationIcon {
       right: 70px;
@@ -47,7 +46,7 @@
   .validationIcon {
     position: absolute;
     z-index: 9;
-    div[role="tooltip"] {
+    div[role='tooltip'] {
       width: fit-content;
       text-wrap: nowrap;
     }
@@ -84,12 +83,18 @@
   .contractSelect {
     font-family: variables.$font-family-light;
     font-size: 14px;
+    border: 2px solid;
+    border-radius: 6px;
+    @include themeVariables.themify(themeVariables.$themes) {
+      border-color: themeVariables.themed('offer-input-border-color');
+    }
   }
 
   .inputsBox {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 20px;
 
     @include utils.respond-to(bp-small) {
       flex-flow: column;

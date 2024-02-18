@@ -1,24 +1,30 @@
-@use "../../../styles/variables.scss";
+@use '../../../styles/variables.scss';
+@use '../../../styles/utils.scss';
+@use '../../../styles/themeVariables.scss';
 
 .loadingSpinnerOverlay {
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff9c;
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 999;
+  @include themeVariables.themify(themeVariables.$themes) {
+    background-color: themeVariables.themed('loading-spinner-bg-color');
+  }
 
   p {
-    color: variables.$midnight;
     font-family: variables.$font-family-bold;
+    @include themeVariables.themify(themeVariables.$themes) {
+      color: themeVariables.themed('loading-spinner-text-color');
+    }
 
     &::after {
-      content: "...";
+      content: '...';
       width: 1.25em;
       overflow: hidden;
       display: inline-block;
@@ -37,16 +43,16 @@
 
   @keyframes ellipsis-dot {
     25% {
-      content: "";
+      content: '';
     }
     50% {
-      content: ".";
+      content: '.';
     }
     75% {
-      content: "..";
+      content: '..';
     }
     100% {
-      content: "...";
+      content: '...';
     }
   }
 }

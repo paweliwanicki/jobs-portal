@@ -28,8 +28,23 @@
     display: inline-flex;
     border-radius: inherit;
     padding-right: 10px;
+
+    &.small {
+      height: 40px;
+      font-size: 14px;
+    }
+    &.medium {
+      height: 60px;
+      font-size: 14px;
+    }
+    &.large {
+      height: 80px;
+      font-size: 18px;
+    }
+
     @include themeVariables.themify(themeVariables.$themes) {
       background-color: themeVariables.themed('input-background');
+      border: themeVariables.themed('input-box-border');
     }
 
     .icon {
@@ -67,6 +82,7 @@
       flex-grow: 1;
       border-radius: inherit;
       flex-shrink: 0;
+      font-size: inherit;
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
@@ -81,19 +97,6 @@
             'input-color'
           ) !important;
         }
-      }
-
-      &.small {
-        height: 40px;
-        font-size: 14px;
-      }
-      &.medium {
-        height: 60px;
-        font-size: 14px;
-      }
-      &.large {
-        height: 80px;
-        font-size: 18px;
       }
 
       @include themeVariables.themify(themeVariables.$themes) {
