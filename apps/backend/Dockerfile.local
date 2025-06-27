@@ -2,6 +2,7 @@ FROM node:alpine
 WORKDIR /app/backend
 COPY . .
 COPY package.json .
+RUN chown -R node:node /app/backend/
 RUN npm install --silent
 RUN npm run build
 USER node
