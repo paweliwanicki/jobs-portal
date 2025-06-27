@@ -4,6 +4,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 # Instalujemy podstawowe narzędzia
 RUN apt-get update && apt-get install -y \
+  python3 \
+  make \
+  g++ \
+  build-essential \
   && rm -rf /var/lib/apt/lists/*
 
 RUN corepack enable
@@ -14,8 +18,11 @@ WORKDIR /app/frontend
 # Kopiujemy tylko pliki package.json najpierw dla lepszego cache
 COPY package.json pnpm-lock.yaml* ./
 
-# Instalujemy zależności jako root
-RUN pnpm install --verbose
+# Czyścimy cache pnpm
+RUN pnpm store prune
+
+# Instalujemy zależności
+RUN pnpm install --frozen-lockfile
 
 # Teraz kopiujemy resztę kodu
 COPY . .
@@ -29,5 +36,6 @@ RUN chown -R node:node /app/frontend/
 # Przełączamy na użytkownika node dopiero na końcu
 USER node
 
+# Cloud Run używa PORT, ale defaultujemy do 8080
 EXPOSE 8080
-CMD [ "pnpm", "run", "preview" ]
+CMD ["pnpm", "run", "preview"]

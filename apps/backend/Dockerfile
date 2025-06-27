@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
   python3 \
   make \
   g++ \
+  build-essential \
   && rm -rf /var/lib/apt/lists/*
 
 RUN corepack enable
@@ -17,17 +18,23 @@ WORKDIR /app/backend
 # Kopiujemy tylko pliki package.json najpierw dla lepszego cache
 COPY package.json pnpm-lock.yaml* ./
 
-# Instalujemy zależności jako root
-RUN pnpm install --verbose
+# Czyścimy cache pnpm żeby uniknąć problemów z natywными modułami
+RUN pnpm store prune
 
-# Rebuild bcrypt dla poprawnej architektury
-RUN pnpm rebuild bcrypt
+# Instalujemy zależności bez cache dla natywnych modułów
+RUN pnpm install --frozen-lockfile --no-optional
+
+# Przebudowujemy wszystkie natywne moduły dla właściwej architektury
+RUN pnpm rebuild
 
 # Teraz kopiujemy resztę kodu
 COPY . .
 
 # Budujemy aplikację jako root
 RUN pnpm run build
+
+# Jeszcze raz rebuild po build dla pewności
+RUN pnpm rebuild
 
 # Nadajemy uprawnienia do całego katalogu
 RUN chown -R node:node /app/backend/
