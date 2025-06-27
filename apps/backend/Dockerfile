@@ -2,14 +2,15 @@ FROM node:alpine
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN corepack prepare pnpm@latest --activate
 
 WORKDIR /app/backend
 
 # Kopiujemy wszystkie pliki jako root
 COPY . .
 
-# Instalujemy zależności jako root
-RUN pnpm install --verbose --frozen-lockfile
+# Instalujemy zależności jako root - bez lockfile jesli nadal problemy
+RUN pnpm install --verbose
 
 # Budujemy aplikację jako root
 RUN pnpm run build
