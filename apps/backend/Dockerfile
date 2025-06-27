@@ -1,16 +1,30 @@
-FROM node:alpine
+FROM node:18-slim
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+
+# Instalujemy wymagane pakiety dla bcrypt i innych natywnych modułów
+RUN apt-get update && apt-get install -y \
+  python3 \
+  make \
+  g++ \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN corepack enable
 RUN corepack prepare pnpm@latest --activate
 
 WORKDIR /app/backend
 
-# Kopiujemy wszystkie pliki jako root
-COPY . .
+# Kopiujemy tylko pliki package.json najpierw dla lepszego cache
+COPY package.json pnpm-lock.yaml* ./
 
-# Instalujemy zależności jako root - bez lockfile jesli nadal problemy
+# Instalujemy zależności jako root
 RUN pnpm install --verbose
+
+# Rebuild bcrypt dla poprawnej architektury
+RUN pnpm rebuild bcrypt
+
+# Teraz kopiujemy resztę kodu
+COPY . .
 
 # Budujemy aplikację jako root
 RUN pnpm run build

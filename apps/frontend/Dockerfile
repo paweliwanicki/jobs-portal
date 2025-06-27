@@ -1,16 +1,24 @@
-FROM node:alpine
+FROM node:18-slim
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+
+# Instalujemy podstawowe narzędzia
+RUN apt-get update && apt-get install -y \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN corepack enable
 RUN corepack prepare pnpm@latest --activate
 
 WORKDIR /app/frontend
 
-# Kopiujemy wszystkie pliki jako root
-COPY . .
+# Kopiujemy tylko pliki package.json najpierw dla lepszego cache
+COPY package.json pnpm-lock.yaml* ./
 
-# Instalujemy zależności jako root - bez lockfile jesli nadal problemy
+# Instalujemy zależności jako root
 RUN pnpm install --verbose
+
+# Teraz kopiujemy resztę kodu
+COPY . .
 
 # Budujemy aplikację jako root
 RUN pnpm run build
