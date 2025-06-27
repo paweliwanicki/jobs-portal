@@ -21,8 +21,8 @@ COPY package.json pnpm-lock.yaml* ./
 # Czyścimy cache pnpm
 RUN pnpm store prune
 
-# Instalujemy zależności
-RUN pnpm install --frozen-lockfile
+# Instalujemy zależności - używamy --force żeby przebudować lockfile jeśli potrzeba
+RUN pnpm install --force
 
 # Teraz kopiujemy resztę kodu
 COPY . .

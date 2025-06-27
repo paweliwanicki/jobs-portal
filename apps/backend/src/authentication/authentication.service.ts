@@ -4,7 +4,7 @@ import { JwtService, JwtVerifyOptions } from '@nestjs/jwt';
 import { AUTH_EXCEPTION_MESSAGES } from './auth-exception.messages';
 import { User } from '../users/user.entity';
 import { ConfigService } from '@nestjs/config';
-import { hash, genSalt, compare } from 'bcrypt';
+import { hash, genSalt, compare } from 'bcryptjs';
 
 @Injectable()
 export class AuthenticationService {
