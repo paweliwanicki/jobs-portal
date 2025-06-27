@@ -6,8 +6,9 @@ export default defineConfig({
   resolve: { alias: { '@': '/src' } },
   plugins: [react()],
   preview: {
-    port: 5173,
+    port: parseInt(process.env.PORT || '5173'),
     strictPort: true,
+    host: '0.0.0.0', // Ważne dla Cloud Run
   },
   server: {
     proxy: {

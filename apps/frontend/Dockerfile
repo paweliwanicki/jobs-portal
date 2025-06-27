@@ -21,5 +21,5 @@ RUN chown -R node:node /app/frontend/
 # Przełączamy na użytkownika node dopiero na końcu
 USER node
 
-EXPOSE $FRONTEND_PORT
+EXPOSE 8080
 CMD [ "pnpm", "run", "preview" ]

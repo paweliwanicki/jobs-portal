@@ -22,6 +22,6 @@ RUN chown -R node:node /app/backend/
 USER node
 # RUN pnpm run migration:run
 
-# Value set in .env file.
-EXPOSE $BACKEND_PORT
+# Cloud Run używa PORT, ale defaultujemy do 3000
+EXPOSE 8080
 CMD ["pnpm", "run", "start"]
