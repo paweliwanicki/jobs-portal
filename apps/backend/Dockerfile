@@ -19,6 +19,8 @@ COPY . .
 # Budujemy aplikację jako root
 RUN pnpm run build
 
+RUN mkdir -p /cloudsql
+
 # Nadajemy uprawnienia do całego katalogu
 RUN chown -R node:node /app/backend/
 
