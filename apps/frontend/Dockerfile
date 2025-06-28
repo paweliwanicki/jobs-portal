@@ -2,6 +2,18 @@ FROM node:18-slim
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
+# Argument do przekazania klucza API podczas budowania
+ARG VITE_GOOGLE_LOCATION_API_KEY
+ENV VITE_GOOGLE_LOCATION_API_KEY=$VITE_GOOGLE_LOCATION_API_KEY
+
+# Argument budowania dla Google Places API Key
+ARG VITE_GOOGLE_LOCATION_API_KEY
+ENV VITE_GOOGLE_LOCATION_API_KEY=$VITE_GOOGLE_LOCATION_API_KEY
+
+# Argument budowania dla TinyMCE Editor API Key  
+ARG VITE_TINYMCE_EDITOR_API_KEY
+ENV VITE_TINYMCE_EDITOR_API_KEY=$VITE_TINYMCE_EDITOR_API_KEY
+
 # Instalujemy podstawowe narzędzia
 RUN apt-get update && apt-get install -y \
   python3 \

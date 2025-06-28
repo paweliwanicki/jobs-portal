@@ -1,7 +1,7 @@
 steps:
   # Budowanie obrazu dla Frontend
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/jobs-app-400516/jobs-portal/frontend', './apps/frontend']
+    args: ['build', '-t', 'gcr.io/jobs-app-400516/jobs-portal/frontend', './apps/frontend', '--build-arg', 'VITE_GOOGLE_LOCATION_API_KEY=$_GOOGLE_LOCATION_API_KEY', '--build-arg', 'VITE_TINYMCE_EDITOR_API_KEY=$_TINYMCE_EDITOR_API_KEY']
 
   # Budowanie obrazu dla Backend
   - name: 'gcr.io/cloud-builders/docker'
@@ -16,6 +16,10 @@ steps:
 images:
   - 'gcr.io/jobs-app-400516/jobs-portal/frontend'
   - 'gcr.io/jobs-app-400516/jobs-portal/backend'
+
+substitutions:
+  _GOOGLE_LOCATION_API_KEY: ''
+  _TINYMCE_EDITOR_API_KEY: ''
 
 options:
   logging: CLOUD_LOGGING_ONLY
