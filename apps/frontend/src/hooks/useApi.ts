@@ -27,9 +27,14 @@ const request = async (
   let body = null;
   const { path, payload, contentType } = params;
 
-  const response = await fetch(path, {
+  // Use backend URL from environment variable for production
+  const baseUrl = import.meta.env.VITE_BACKEND_URL || '';
+  const fullPath = baseUrl + path;
+
+  const response = await fetch(fullPath, {
     method,
     body: payload,
+    credentials: 'include', // Important for cookies (auth)
     headers: {
       'Content-Type': contentType ? contentType : 'application/json',
     },

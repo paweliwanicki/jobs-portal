@@ -6,15 +6,19 @@ ENV PATH="$PNPM_HOME:$PATH"
 ARG VITE_GOOGLE_LOCATION_API_KEY
 ENV VITE_GOOGLE_LOCATION_API_KEY=$VITE_GOOGLE_LOCATION_API_KEY
 
-# Argument budowania dla Google Places API Key
+# Build arguments for environment variables
 ARG VITE_GOOGLE_LOCATION_API_KEY
 ENV VITE_GOOGLE_LOCATION_API_KEY=$VITE_GOOGLE_LOCATION_API_KEY
 
-# Argument budowania dla TinyMCE Editor API Key  
+# Build argument for TinyMCE Editor API Key  
 ARG VITE_TINYMCE_EDITOR_API_KEY
 ENV VITE_TINYMCE_EDITOR_API_KEY=$VITE_TINYMCE_EDITOR_API_KEY
 
-# Instalujemy podstawowe narzędzia
+# Backend URL for Cloud Run
+ARG VITE_BACKEND_URL
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
+# Install basic tools
 RUN apt-get update && apt-get install -y \
   python3 \
   make \
@@ -27,25 +31,25 @@ RUN corepack prepare pnpm@latest --activate
 
 WORKDIR /app/frontend
 
-# Kopiujemy tylko pliki package.json najpierw dla lepszego cache
+# Copy only package.json files first for better cache
 COPY package.json pnpm-lock.yaml* ./
 
-# Czyścimy cache pnpm
+# Clean pnpm cache
 RUN pnpm store prune
 
-# Instalujemy zależności - używamy --force żeby przebudować lockfile jeśli potrzeba
+# Install dependencies - use --force to rebuild lockfile if needed
 RUN pnpm install --force
 
-# Teraz kopiujemy resztę kodu
+# Now copy the rest of the code
 COPY . .
 
-# Budujemy aplikację jako root
+# Build application as root
 RUN pnpm run build
 
-# Nadajemy uprawnienia do całego katalogu
+# Set permissions for the entire directory
 RUN chown -R node:node /app/frontend/
 
-# Przełączamy na użytkownika node dopiero na końcu
+# Switch to node user only at the end
 USER node
 
 # Cloud Run używa PORT, ale defaultujemy do 8080

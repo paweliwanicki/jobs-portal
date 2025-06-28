@@ -7,24 +7,24 @@ RUN corepack prepare pnpm@latest --activate
 
 WORKDIR /app/backend
 
-# Kopiujemy tylko pliki package.json najpierw dla lepszego cache
+# Copy only package.json files first for better cache
 COPY package.json pnpm-lock.yaml* ./
 
-# Instalujemy zależności - używamy --force żeby przebudować lockfile jeśli potrzeba
+# Install dependencies - use --force to rebuild lockfile if needed
 RUN pnpm install --force
 
-# Teraz kopiujemy resztę kodu
+# Now copy the rest of the code
 COPY . .
 
-# Budujemy aplikację jako root
+# Build application as root
 RUN pnpm run build
 
 RUN mkdir -p /cloudsql
 
-# Nadajemy uprawnienia do całego katalogu
+# Set permissions for the entire directory
 RUN chown -R node:node /app/backend/
 
-# Przełączamy na użytkownika node dopiero na końcu
+# Switch to node user only at the end
 USER node
 
 # Cloud Run używa PORT, ale defaultujemy do 8080

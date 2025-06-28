@@ -7,7 +7,7 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   
-  // Włączamy CORS dla Cloud Run
+  // Enable CORS for Cloud Run
   app.enableCors({
     origin: true,
     credentials: true,
@@ -19,7 +19,7 @@ async function bootstrap() {
     prefix: '/uploads/',
   });
   
-  // Używamy PORT z zmiennej środowiskowej (Cloud Run) lub domyślnie 3000
+  // Use PORT from environment variable (Cloud Run) or default to 3000
   const port = process.env.PORT || 3000;
   await app.listen(port, '0.0.0.0');
   console.log(`Application is running on port ${port}`);
