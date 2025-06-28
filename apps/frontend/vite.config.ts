@@ -8,7 +8,8 @@ export default defineConfig({
   preview: {
     port: parseInt(process.env.PORT || '5173'),
     strictPort: true,
-    host: '0.0.0.0', // Ważne dla Cloud Run
+    host: '0.0.0.0', 
+    allowedHosts: ['*'], 
   },
   server: {
     proxy: {
