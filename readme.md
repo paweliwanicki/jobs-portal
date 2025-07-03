@@ -48,7 +48,7 @@
   <p>
     <strong>@TODO!! I've changed the host from AWS to google cloud, and there is still needs to configure backend communication with frontend (right now it return errors - it will be finished soon)</strong>
     Link to my project website:
-    <a href="[http://13.60.29.19:5173/dashboard](https://jobs-portal-frontend-1080803823360.europe-west1.run.app/dashboard)" rel="noreferrer" target="_blank">DEMO</a>
+    <a href="https://jobs-portal-frontend-1080803823360.europe-west1.run.app/dashboard" rel="noreferrer" target="_blank">DEMO</a>
   <p>
   <p>
     Link to frontend mentor project:
