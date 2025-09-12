@@ -47,11 +47,12 @@
   </ul>
   <p>
     Link to my project website (Hosted on GCP):
-    <a href="http://35.207.40.135:5173/dashboard" rel="noreferrer" target="_blank">DEMO</a>
+    <a href="http://35.211.168.234:5173/dashboard" rel="noreferrer" target="_blank">DEMO</a>
   <p>
   <p>
     Link to frontend mentor project:
     <a href="https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l" rel="noreferrer"  target="_blank">https://www.frontendmentor.io/challenges/  devjobs-web-app-HuvC_LP4l</a>
   <p>
 </div>
+
 
